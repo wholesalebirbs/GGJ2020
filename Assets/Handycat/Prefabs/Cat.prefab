@@ -3724,7 +3724,7 @@ MonoBehaviour:
   staticAnimator: {fileID: 15919458685999024}
   ragdollRigidbody: {fileID: 2992880030661026518}
   spine: {fileID: 2992880030661026544}
-  rotationSpeed: 20
+  rotationSpeed: 100
   upperBodyStrength: 3000
   movementAxis: P2LeftStickVertical
   rotationAxis: P2LeftStickHorizontal
