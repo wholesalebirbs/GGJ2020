@@ -38,8 +38,6 @@ namespace Buga
 
         private void HandleAnimator()
         {
-            Debug.Log("Forward:" + Input.GetAxis(movementAxis));
-
             staticAnimator.SetFloat("Forward", Input.GetAxis(movementAxis));
             staticAnimator.SetBool("Jump", Input.GetButton(jumpButton));
         }
