@@ -26,6 +26,8 @@ namespace Buga
         [Tooltip("The force required to break this breakable.")]
         protected float damageForce = 5.0f;
 
+        protected string damageableTag = "Cat";
+
         [SerializeField]
         [Tooltip("Broken prefab particles")]
         protected GameObject brokenPrefab;
@@ -118,16 +120,21 @@ namespace Buga
 
         private void OnCollisionEnter(Collision collision)
         {
-            if (status == BrokenStatusType.Idle)
+            if (CompareTag(damageableTag))
             {
-
-                Debug.Log($"Hit force: {collision.relativeVelocity.magnitude}");
-
-                if (collision.relativeVelocity.magnitude > damageForce)
+                if (status == BrokenStatusType.Idle)
                 {
-                    TakeDamage(1);
+
+                    Debug.Log($"Hit force: {collision.relativeVelocity.magnitude}");
+
+                    if (collision.relativeVelocity.magnitude > damageForce)
+                    {
+                        TakeDamage(1);
+                    }
                 }
             }
+
+
         }
     }
 
