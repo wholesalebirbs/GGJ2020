@@ -20,12 +20,16 @@ namespace Buga
         {
 
             Interactable.OnInteractCalled += OnInteractCalled;
+
+            Minigame.OnMinigameEnded += CompleteRepair;
         }
 
         private void OnDisable()
         {
 
             Interactable.OnInteractCalled -= OnInteractCalled;
+
+            Minigame.OnMinigameEnded -= CompleteRepair;
         }
 
 
