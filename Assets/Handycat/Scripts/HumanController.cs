@@ -29,11 +29,28 @@ namespace Buga
 
             RepairController.OnRepairBegun += OnRepairBegun;
             RepairController.OnRepairCompleted += OnRepairComplete;
+
+            GameManager.OnGameStarted += OnGameStarted;
+            GameManager.OnGameEnded += OnGameEnded;
+
         }
         private void OnDestroy()
         {
             RepairController.OnRepairBegun -= OnRepairBegun;
             RepairController.OnRepairCompleted -= OnRepairComplete;
+
+            GameManager.OnGameEnded -= OnGameEnded;
+            GameManager.OnGameStarted -= OnGameStarted;
+        }
+
+
+        public void OnGameStarted()
+        {
+            canMove = true;
+        }
+        public void OnGameEnded()
+        {
+            canMove = false;
         }
 
 

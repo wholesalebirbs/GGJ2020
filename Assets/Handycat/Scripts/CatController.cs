@@ -28,26 +28,48 @@ namespace Buga
 
         public Vector3 upperBodyVector = Vector3.zero;
 
+        bool canMove = false;
+
         private void Awake()
         {
             RepairController.OnRepairBegun += OnRepairBegun;
             RepairController.OnRepairCompleted += OnRepairComplete;
+
+            GameManager.OnGameStarted += OnGameStarted;
+            GameManager.OnGameEnded += OnGameEnded;
+
         }
 
         private void OnDestroy()
         {
             RepairController.OnRepairBegun -= OnRepairBegun;
             RepairController.OnRepairCompleted -= OnRepairComplete;
+
+            GameManager.OnGameStarted -= OnGameStarted;
+            GameManager.OnGameEnded -= OnGameEnded;
         }
 
         private void FixedUpdate()
         {
-            HandleCatRotation();
+            if (canMove)
+            {
+                HandleCatRotation();
 
-            HandleUpperbody();
+                HandleUpperbody();
 
-            HandleAnimator();
+                HandleAnimator();
+            }
         }
+
+        protected void OnGameStarted()
+        {
+            canMove = true;
+        }
+        protected void OnGameEnded()
+        {
+            canMove = false;
+        }
+
 
         private void HandleAnimator()
         {
