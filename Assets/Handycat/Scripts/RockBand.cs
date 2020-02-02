@@ -27,12 +27,14 @@ namespace Buga
 
             TileDetector.OnTileHit += OnTileHit;
 
-            Initialize();
+            //Initialize();
 
         }
         public override void Initialize()
         {
             base.Initialize();
+
+            miniGameMainPanel.SetActive(true);
 
             for (int i = 0; i < detectors.Count; i++)
             {
@@ -43,6 +45,8 @@ namespace Buga
             {
                 spawners[i].BeginSpawning();
             }
+
+            score = 0;
         }
 
 
@@ -107,6 +111,10 @@ namespace Buga
             }
 
             bool success = EvaluateResults();
+            if (success)
+            {
+                score = 1;
+            }
             Debug.Log($"Rockband success{success}");
 
             yield return new WaitForSeconds(1.0f);
