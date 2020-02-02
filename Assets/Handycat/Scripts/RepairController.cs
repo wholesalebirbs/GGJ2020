@@ -11,7 +11,7 @@ namespace Buga
         public static UnityAction OnRepairBegun;
         public static UnityAction<bool, int> OnRepairCompleted;
 
-        protected Interactable currentInteractable;
+        protected Breakable currentBreakable;
         private void Awake()
         {
         }
@@ -20,12 +20,16 @@ namespace Buga
         {
 
             Interactable.OnInteractCalled += OnInteractCalled;
+
+            Minigame.OnMinigameEnded += CompleteRepair;
         }
 
         private void OnDisable()
         {
 
             Interactable.OnInteractCalled -= OnInteractCalled;
+
+            Minigame.OnMinigameEnded -= CompleteRepair;
         }
 
 
@@ -37,12 +41,17 @@ namespace Buga
 
         public void CompleteRepair(bool status, int score)
         {
+            if (currentBreakable != null)
+            {
+                currentBreakable.Repair();
+            }
+
             OnRepairCompleted?.Invoke(status, score);
         }
 
         protected void OnInteractCalled(Interactable interactable)
         {
-            currentInteractable = interactable;
+            currentBreakable = interactable as Breakable;
             BeginRepair();
         }
     }

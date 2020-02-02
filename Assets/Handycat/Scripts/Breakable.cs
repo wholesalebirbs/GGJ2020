@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.Events;
 
 namespace Buga
 {
@@ -43,6 +44,8 @@ namespace Buga
         MeshRenderer meshRenderer;
         Rigidbody rb;
 
+        public static UnityEvent OnBreakableBroken;
+        public static UnityEvent OnBreakableRepaired;
 
         private void Awake()
         {
@@ -56,7 +59,6 @@ namespace Buga
         }
         public override void Interact()
         {
-            Repair();
             base.Interact();
         }
 
@@ -79,6 +81,7 @@ namespace Buga
 
                 currentBrokenParts = Instantiate(brokenPrefab, transform.position, Quaternion.identity);
                 Debug.Log($"{gameObject.name} is now broken.");
+                OnBreakableBroken?.Invoke();
             }
         }
 
@@ -101,6 +104,7 @@ namespace Buga
             Destroy(currentBrokenParts);
             meshRenderer.enabled = true;
 
+            OnBreakableRepaired?.Invoke();
 
             Debug.Log($"{gameObject.name} has been repaired.");
         }
