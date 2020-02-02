@@ -16,6 +16,10 @@ namespace UnityStandardAssets.Characters.ThirdPerson
 		[SerializeField] float m_AnimSpeedMultiplier = 1f;
 		[SerializeField] float m_GroundCheckDistance = 0.1f;
 
+        [SerializeField]
+        protected bool canInteract = false;
+
+
 		Rigidbody m_Rigidbody;
 		Animator m_Animator;
 		bool m_IsGrounded;
@@ -124,7 +128,7 @@ namespace UnityStandardAssets.Characters.ThirdPerson
 			m_Animator.SetBool("OnGround", m_IsGrounded);
 			if (!m_IsGrounded)
 			{
-				m_Animator.SetFloat("Jump", m_Rigidbody.velocity.y);
+				//m_Animator.SetFloat("Jump", m_Rigidbody.velocity.y);
 			}
 
 			// calculate which leg is behind, so as to leave that leg trailing in the jump animation
@@ -136,7 +140,7 @@ namespace UnityStandardAssets.Characters.ThirdPerson
 			float jumpLeg = (runCycle < k_Half ? 1 : -1) * m_ForwardAmount;
 			if (m_IsGrounded)
 			{
-				m_Animator.SetFloat("JumpLeg", jumpLeg);
+				//m_Animator.SetFloat("JumpLeg", jumpLeg);
 			}
 
 			// the anim speed multiplier allows the overall speed of walking/running to be tweaked in the inspector,

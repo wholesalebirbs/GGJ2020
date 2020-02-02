@@ -27,6 +27,19 @@ namespace Buga
         public float rotationInputValue;
 
         public Vector3 upperBodyVector = Vector3.zero;
+
+        private void Awake()
+        {
+            RepairController.OnRepairBegun += OnRepairBegun;
+            RepairController.OnRepairCompleted += OnRepairComplete;
+        }
+
+        private void OnDestroy()
+        {
+            RepairController.OnRepairBegun -= OnRepairBegun;
+            RepairController.OnRepairCompleted -= OnRepairComplete;
+        }
+
         private void FixedUpdate()
         {
             HandleCatRotation();
@@ -60,6 +73,16 @@ namespace Buga
 
             spine.AddForce(upperBodyVector * upperBodyStrength * Time.fixedDeltaTime);
 
+        }
+
+        protected void OnRepairBegun()
+        {
+            
+        }
+
+        protected void OnRepairComplete(bool status, int score)
+        {
+            //TODO implement states
         }
 
     }

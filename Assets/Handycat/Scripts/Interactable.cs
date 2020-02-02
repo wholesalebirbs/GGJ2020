@@ -25,7 +25,7 @@ namespace Buga
                 return;
             }
 
-            OnInteractCalled(this);
+            OnInteractCalled?.Invoke(this);
 
         }
     }

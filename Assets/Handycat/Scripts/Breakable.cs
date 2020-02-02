@@ -56,16 +56,17 @@ namespace Buga
         }
         public override void Interact()
         {
+            Repair();
             base.Interact();
         }
 
 
         private void Update()
         {
-            if (Input.GetButtonDown("Fire1"))
-            {
-                Repair();
-            }
+            //if (Input.GetButtonDown("Fire1"))
+            //{
+            //    Repair();
+            //}
         }
         public virtual void Break()
         {
@@ -108,7 +109,7 @@ namespace Buga
         {
             currentHitpoints -= damage;
 
-            
+            Debug.Log($"{name} took damage.");
             if (currentHitpoints < 0)
             {
                 currentHitpoints = 0;
@@ -120,7 +121,7 @@ namespace Buga
 
         private void OnCollisionEnter(Collision collision)
         {
-            if (CompareTag(damageableTag))
+            if (collision.gameObject.CompareTag(damageableTag))
             {
                 if (status == BrokenStatusType.Idle)
                 {
