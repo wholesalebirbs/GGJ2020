@@ -10,9 +10,16 @@ namespace Buga
         [SerializeField]
         protected Transform ballTransform;
         [SerializeField]
+        protected Transform targetTransform;
+        [SerializeField]
         protected Transform beginBallTransform;
         [SerializeField]
         protected Transform endBallTransform;
+        [SerializeField]
+        protected Transform hitBallTransform;
+        [SerializeField]
+        protected float maxDistanceToTarget = 1;
+        protected float currentDistanceToTarget = 0;
 
         [Header("Pitcher")]
         [SerializeField]
@@ -34,12 +41,16 @@ namespace Buga
         [SerializeField]
         protected string swingButton = string.Empty;
 
+
+        Coroutine currentballRoutine;
+
         public override void Initialize()
         {
             base.Initialize();
             ballTransform.position = beginBallTransform.position;
             ballTransform.localScale = beginBallTransform.localScale;
 
+            ballTransform.gameObject.SetActive(false);
             miniGameMainPanel.SetActive(true);
 
             StartCoroutine(PitchCoroutine());
@@ -55,7 +66,8 @@ namespace Buga
             acceptingInput = true;
 
             Debug.Log("Pitching");
-            StartCoroutine(LerpTransform(ballTransform, beginBallTransform, endBallTransform, ballTravelTime, true));
+            ballTransform.gameObject.SetActive(true);
+            currentballRoutine =  StartCoroutine(LerpTransform(ballTransform, beginBallTransform, endBallTransform, ballTravelTime, true));
         }
 
 
@@ -67,23 +79,30 @@ namespace Buga
                 {
                     Swing();
                 }
+
+                if (ballTransform.position == endBallTransform.position)
+                {
+                    StartCoroutine(CleanUp());
+                }
             }
+
+            currentDistanceToTarget = Vector3.Distance(ballTransform.position, targetTransform.position);
+
+
         }
         protected override IEnumerator CleanUp()
         {
+            acceptingInput = false;
             bool success = EvaluateResults();
             if (success)
             {
-                successfulVisual.SetActive(true);
-                //audioSource.clip = successfulClip;
-            }
-            else
-            {
-                successfulVisual.SetActive(false);
-                //audioSource.clip = failureClip;
+                StopCoroutine(currentballRoutine);
+                currentballRoutine = StartCoroutine(LerpTransform(ballTransform, ballTransform, hitBallTransform,1, false));
             }
 
-            //audioSource.Play();
+            yield return new WaitForSeconds(1.0f);
+
+            ShowEndVisuals(success);
             
             yield return new WaitForSeconds(cleanUpTime);
 
@@ -93,12 +112,16 @@ namespace Buga
 
         protected void Swing()
         {
-            acceptingInput = false;
+            batterAnimator.SetBool("Swing", true);
             StartCoroutine(CleanUp());
         }
 
         public override bool EvaluateResults()
         {
+            if (currentDistanceToTarget > maxDistanceToTarget)
+            {
+                return false;
+            }
             return true;
         }
 

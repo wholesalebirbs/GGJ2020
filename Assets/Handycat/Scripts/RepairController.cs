@@ -41,9 +41,13 @@ namespace Buga
 
         public void CompleteRepair(bool status, int score)
         {
-            if (currentBreakable != null)
+            if (status == true)
             {
-                currentBreakable.Repair();
+                if (currentBreakable != null)
+                {
+                    currentBreakable.Repair();
+                    currentBreakable = null;
+                }
             }
 
             OnRepairCompleted?.Invoke(status, score);

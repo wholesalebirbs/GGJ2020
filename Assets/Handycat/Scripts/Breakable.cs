@@ -56,6 +56,7 @@ namespace Buga
             meshRenderer = GetComponentInChildren<MeshRenderer>();
             rb = GetComponentInChildren<Rigidbody>();
             currentHitpoints = hitpoints;
+            canInteract = false;
         }
         public override void Interact()
         {
@@ -81,6 +82,7 @@ namespace Buga
 
                 currentBrokenParts = Instantiate(brokenPrefab, transform.position, Quaternion.identity);
                 Debug.Log($"{gameObject.name} is now broken.");
+                canInteract = true;
                 OnBreakableBroken?.Invoke();
             }
         }
@@ -104,6 +106,7 @@ namespace Buga
             Destroy(currentBrokenParts);
             meshRenderer.enabled = true;
 
+            canInteract = false;
             OnBreakableRepaired?.Invoke();
 
             Debug.Log($"{gameObject.name} has been repaired.");
