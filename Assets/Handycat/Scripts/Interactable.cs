@@ -11,7 +11,7 @@ namespace Buga
     {
         public static UnityAction<Interactable> OnInteractCalled;
 
-        bool canInteract = true;
+        protected bool canInteract = true;
 
         protected virtual void Initialize()
         {

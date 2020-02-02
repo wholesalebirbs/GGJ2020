@@ -83,6 +83,21 @@ namespace Buga
         }
 
 
+        public virtual void ShowEndVisuals(bool success)
+        {
+            if (success)
+            {
+                successfulVisual.SetActive(true);
+                audioSource.clip = successfulClip;
+            }
+            else
+            {
+                failureVisual.SetActive(true);
+                audioSource.clip = failureClip;
+            }
+            audioSource.Play();
+        }
+
         protected virtual void EndMinigame(bool results, int score)
         {
 
