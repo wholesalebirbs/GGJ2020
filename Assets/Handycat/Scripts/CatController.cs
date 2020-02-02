@@ -69,9 +69,9 @@ namespace Buga
         protected void HandleUpperbody()
         {
             upperBodyVector.x = Input.GetAxis(upperBodyHorizontal);
-            upperBodyVector.y = Input.GetAxis(upperBodyVertical);
+            upperBodyVector.z = -Input.GetAxis(upperBodyVertical);
 
-            spine.AddForce(upperBodyVector * upperBodyStrength * Time.fixedDeltaTime);
+            spine.AddForce(upperBodyVector * upperBodyStrength * Time.fixedDeltaTime, ForceMode.Impulse );
 
         }
 

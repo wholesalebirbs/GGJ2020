@@ -1330,7 +1330,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &2992880030661394209
 Transform:
   m_ObjectHideFlags: 0
@@ -3467,11 +3467,9 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 9150046542464376193}
-  - component: {fileID: 9150046542464376254}
-  - component: {fileID: 9150046542464376255}
   m_Layer: 0
   m_Name: Cat
-  m_TagString: Cat
+  m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -3493,39 +3491,3 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &9150046542464376254
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 9150046542464376192}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 8b772b4bebc9dd24f888e5692e400044, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
---- !u!114 &9150046542464376255
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 9150046542464376192}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 031fd61dbf6d2b94fb31ad5f827e2461, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  staticAnimator: {fileID: 15919458685999024}
-  ragdollRigidbody: {fileID: 2992880030661026518}
-  spine: {fileID: 2992880030661026544}
-  rotationSpeed: 100
-  upperBodyStrength: 3000
-  movementAxis: P2LeftStickVertical
-  rotationAxis: P2LeftStickHorizontal
-  upperBodyVertical: P2RightStickVertical
-  upperBodyHorizontal: P2RightStickHorizontal
-  jumpButton: P2AButton
-  rotationInputValue: 0
-  upperBodyVector: {x: 0, y: 0, z: 0}

@@ -42,7 +42,10 @@ namespace Buga
         {
             if (!canMove)
             {
+                // pass all parameters to the character control script
+                thirdpersonCharacter.Move(Vector3.zero, false, false);
                 return;
+
             }
             // read inputs
             float h = CrossPlatformInputManager.GetAxis("Horizontal");

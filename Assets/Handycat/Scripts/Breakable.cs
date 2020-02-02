@@ -125,19 +125,18 @@ namespace Buga
 
         private void OnCollisionEnter(Collision collision)
         {
-            if (collision.gameObject.CompareTag(damageableTag))
+
+            if (status == BrokenStatusType.Idle)
             {
-                if (status == BrokenStatusType.Idle)
+
+                Debug.Log($"Hit force: {collision.relativeVelocity.magnitude}");
+
+                if (collision.relativeVelocity.magnitude > damageForce)
                 {
-
-                    Debug.Log($"Hit force: {collision.relativeVelocity.magnitude}");
-
-                    if (collision.relativeVelocity.magnitude > damageForce)
-                    {
-                        TakeDamage(1);
-                    }
+                    TakeDamage(1);
                 }
             }
+
 
 
         }
