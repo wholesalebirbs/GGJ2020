@@ -20,7 +20,7 @@ namespace Buga
         [SerializeField]
         protected bool acceptingInput = false;
 
-        protected virtual int score = 0;
+        protected int score = 0;
 
         protected AudioSource audioSource;
 
