@@ -89,6 +89,9 @@ namespace Buga
             // turn off panel
             miniGameMainPanel.SetActive(false);
 
+            successfulVisual.SetActive(false);
+            failureVisual.SetActive(false);
+
             // broadcast results
             OnMinigameEnded?.Invoke(results, score);
         }

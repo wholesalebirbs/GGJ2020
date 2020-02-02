@@ -13,6 +13,11 @@ namespace Buga
         protected Transform beginBallTransform;
         [SerializeField]
         protected Transform endBallTransform;
+
+        [Header("Pitcher")]
+        [SerializeField]
+        protected Animator pitcherAnimator;
+
         [SerializeField]
         protected float pitchMinWaitTime = 2.0f;
         [SerializeField]
@@ -26,6 +31,7 @@ namespace Buga
         protected Animator batterAnimator;
 
         [Header("Controls")]
+        [SerializeField]
         protected string swingButton = string.Empty;
 
         public override void Initialize()
@@ -45,6 +51,7 @@ namespace Buga
             Debug.Log("Beginning pitch coroutine.");
             yield return new WaitForSeconds(Random.Range(pitchMinWaitTime, pitchMaxWaitTime));
 
+            pitcherAnimator.SetBool("Pitch", true);
             acceptingInput = true;
 
             Debug.Log("Pitching");
@@ -68,36 +75,33 @@ namespace Buga
             if (success)
             {
                 successfulVisual.SetActive(true);
-                audioSource.clip = successfulClip;
+                //audioSource.clip = successfulClip;
             }
             else
             {
                 successfulVisual.SetActive(false);
-                audioSource.clip = failureClip;
+                //audioSource.clip = failureClip;
             }
 
-            audioSource.Play();
+            //audioSource.Play();
             
             yield return new WaitForSeconds(cleanUpTime);
 
-            // turn off panel
-            miniGameMainPanel.SetActive(false);
-
-            // broadcast results
-            OnMinigameEnded?.Invoke(success, score);
-            
+            EndMinigame(success, score);         
 
         }
 
         protected void Swing()
         {
-            CleanUp();
+            acceptingInput = false;
+            StartCoroutine(CleanUp());
         }
 
         public override bool EvaluateResults()
         {
             return true;
         }
+
     }
 
 }
