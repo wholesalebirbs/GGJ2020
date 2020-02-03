@@ -14,8 +14,8 @@ namespace Buga
         protected GameObject tilePrefab;
 
 
-        protected float minSpawnRate = 1.0f;
-        protected float maxSpawnRate = 5.0f;
+        protected float minSpawnRate = 0.0f;
+        protected float maxSpawnRate = 3.0f;
 
 
         bool running = false;

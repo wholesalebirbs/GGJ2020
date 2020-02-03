@@ -25,10 +25,14 @@ namespace Buga
             Interactable temp = other.GetComponent<Interactable>();
             if (temp != null)
             {
+                Breakable breakable = temp as Breakable;
 
-                Debug.Log($"Triggered by: {other.name}");
-                activeInteractable = temp;
-                canInteract = true;
+                if (breakable.status == BrokenStatusType.Broken)
+                {
+                    Debug.Log($"Triggered by: {other.name}");
+                    activeInteractable = temp;
+                    canInteract = true;
+                }
             }
         }
 

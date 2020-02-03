@@ -129,6 +129,12 @@ namespace Buga
         private void OnCollisionEnter(Collision collision)
         {
 
+
+            if (collision.gameObject.tag != "Cat")
+            {
+                return;
+            }
+
             if (status == BrokenStatusType.Idle)
             {
 

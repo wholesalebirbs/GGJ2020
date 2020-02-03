@@ -47,6 +47,7 @@ namespace Buga
             }
 
             score = 0;
+            currentTiles = 0;
         }
 
 
@@ -113,7 +114,7 @@ namespace Buga
             bool success = EvaluateResults();
             if (success)
             {
-                score = 1;
+                score = -1;
             }
             Debug.Log($"Rockband success{success}");
 
