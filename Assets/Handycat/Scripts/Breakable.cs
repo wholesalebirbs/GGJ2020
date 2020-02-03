@@ -44,8 +44,8 @@ namespace Buga
         MeshRenderer meshRenderer;
         Rigidbody rb;
 
-        public static UnityEvent OnBreakableBroken;
-        public static UnityEvent OnBreakableRepaired;
+        public static UnityAction OnBreakableBroken;
+        public static UnityAction OnBreakableRepaired;
 
         private void Awake()
         {

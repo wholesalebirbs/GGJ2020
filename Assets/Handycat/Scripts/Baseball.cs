@@ -52,6 +52,7 @@ namespace Buga
 
             ballTransform.gameObject.SetActive(false);
             miniGameMainPanel.SetActive(true);
+            score = 0;
 
             StartCoroutine(PitchCoroutine());
         }
@@ -98,6 +99,7 @@ namespace Buga
             {
                 StopCoroutine(currentballRoutine);
                 currentballRoutine = StartCoroutine(LerpTransform(ballTransform, ballTransform, hitBallTransform,1, false));
+                score = -1;
             }
 
             yield return new WaitForSeconds(1.0f);
