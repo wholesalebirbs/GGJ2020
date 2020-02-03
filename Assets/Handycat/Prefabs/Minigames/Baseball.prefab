@@ -124,7 +124,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   miniGameMainPanel: {fileID: 8617310489962111161}
-  setUpTime: 3
+  setUpTime: 1
   cleanUpTime: 3
   acceptingInput: 0
   successfulVisual: {fileID: 0}
@@ -138,9 +138,9 @@ MonoBehaviour:
   hitBallTransform: {fileID: 2003521051407916198}
   maxDistanceToTarget: 1
   pitcherAnimator: {fileID: 8617310488880434045}
-  pitchMinWaitTime: 2
-  pitchMaxWaitTime: 8
-  ballTravelTime: 2
+  pitchMinWaitTime: 0
+  pitchMaxWaitTime: 2
+  ballTravelTime: 1
   batterAnimator: {fileID: 8617310489249705899}
   swingButton: P1XButton
 --- !u!82 &3177407972817158921

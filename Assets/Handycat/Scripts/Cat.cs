@@ -6,7 +6,8 @@ namespace Buga
 {
     public enum CatStates
     {
-
+        OK,
+        Stunned
     }
 
     public class Cat : MonoBehaviour

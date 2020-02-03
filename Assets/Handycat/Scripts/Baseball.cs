@@ -102,7 +102,7 @@ namespace Buga
                 score = -1;
             }
 
-            yield return new WaitForSeconds(1.0f);
+            yield return new WaitForSeconds(0.1f);
 
             ShowEndVisuals(success);
             

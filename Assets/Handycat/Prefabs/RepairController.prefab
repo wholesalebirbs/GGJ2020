@@ -447,6 +447,16 @@ PrefabInstance:
       propertyPath: m_Name
       value: SpiderSwat
       objectReference: {fileID: 0}
+    - target: {fileID: 5678270676682971998, guid: 7842558d3ea886b40ac98db6f1ef41f9,
+        type: 3}
+      propertyPath: successfulVisual
+      value: 
+      objectReference: {fileID: 4603340343953613257}
+    - target: {fileID: 5678270676682971998, guid: 7842558d3ea886b40ac98db6f1ef41f9,
+        type: 3}
+      propertyPath: failureVisual
+      value: 
+      objectReference: {fileID: 4603340343290901472}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 7842558d3ea886b40ac98db6f1ef41f9, type: 3}
 --- !u!224 &6868188444294349671 stripped

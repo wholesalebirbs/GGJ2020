@@ -44,10 +44,12 @@ namespace Buga
         public TextMeshProUGUI timeText;
         public TextMeshProUGUI mayhemtext;
 
+        AudioSource bgm;
         private void Awake()
         {
             Breakable.OnBreakableBroken += OnBreakableBroken;
             RepairController.OnRepairCompleted += OnRepairCompleted;
+            bgm = GetComponentInChildren<AudioSource>();
             ResetGame();
         }
         public void StartGame()
@@ -61,6 +63,7 @@ namespace Buga
             mayhemtext.text = $"Mayhem {mayhemScore}";
 
             timeText.gameObject.SetActive(true);
+            bgm.Play();
 
 
 
@@ -71,6 +74,7 @@ namespace Buga
             state = GameState.End;
             OnGameEnded?.Invoke();
 
+            bgm.Stop();
             endScreen.SetActive(true);
         }
 

@@ -6,7 +6,8 @@ using UnityEngine;
 namespace Buga
 {
     public class CatController : MonoBehaviour
-    { 
+    {
+        CatStates state = CatStates.OK;
         public Animator staticAnimator;
         public Rigidbody ragdollRigidbody;
 
@@ -30,6 +31,9 @@ namespace Buga
 
         bool canMove = false;
 
+        float stunTime = 3.0f;
+        float currentStunTime = 0.0f;
+
         private void Awake()
         {
             RepairController.OnRepairBegun += OnRepairBegun;
@@ -51,14 +55,33 @@ namespace Buga
 
         private void FixedUpdate()
         {
-            if (canMove)
+            switch (state)
             {
-                HandleCatRotation();
+                case CatStates.OK:
+                    if (canMove)
+                    {
+                        HandleCatRotation();
 
-                HandleUpperbody();
+                        HandleUpperbody();
 
-                HandleAnimator();
+                        HandleAnimator();
+                    }
+                    break;
+                case CatStates.Stunned:
+
+                    currentStunTime += Time.fixedDeltaTime;
+                    if (currentStunTime > stunTime)
+                    {
+                        state = CatStates.OK;
+                        currentStunTime = 0;
+                    }
+
+                    break;
+                default:
+                    break;
             }
+
+
         }
 
         protected void OnGameStarted()
@@ -104,7 +127,10 @@ namespace Buga
 
         protected void OnRepairComplete(bool status, int score)
         {
-            //TODO implement states
+            if (status)
+            {
+                state = CatStates.Stunned;
+            }
         }
 
     }

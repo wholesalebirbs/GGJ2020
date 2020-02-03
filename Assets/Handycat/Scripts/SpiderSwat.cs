@@ -87,6 +87,10 @@ namespace Buga
             acceptingInput = false;
             bool success = EvaluateResults();
 
+            if (success)
+            {
+                score = -1;
+            }
             //yield return new WaitForSeconds(1.0f);
 
             ShowEndVisuals(success);

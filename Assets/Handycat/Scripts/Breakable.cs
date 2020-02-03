@@ -130,7 +130,7 @@ namespace Buga
         {
 
 
-            if (collision.gameObject.tag == "Breakables")
+            if (collision.gameObject.tag != "Cat")
             {
                 return;
             }
