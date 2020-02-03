@@ -129,6 +129,12 @@ namespace Buga
         private void OnCollisionEnter(Collision collision)
         {
 
+
+            if (collision.gameObject.tag == "Breakables")
+            {
+                return;
+            }
+
             if (status == BrokenStatusType.Idle)
             {
 
