@@ -47,6 +47,7 @@ namespace Buga
             }
 
             score = 0;
+            currentTiles = 0;
         }
 
 

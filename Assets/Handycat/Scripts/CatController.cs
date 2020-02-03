@@ -37,7 +37,7 @@ namespace Buga
 
             GameManager.OnGameStarted += OnGameStarted;
             GameManager.OnGameEnded += OnGameEnded;
-
+            canMove = false;
         }
 
         private void OnDestroy()
