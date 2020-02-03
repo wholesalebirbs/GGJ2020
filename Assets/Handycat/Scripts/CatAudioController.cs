@@ -14,6 +14,7 @@ namespace Buga
         {
             if (Input.GetButtonDown(meowButton))
             {
+                Debug.Log(meowButton + " pressed");
                 PlayRandomSound();
             }
         }

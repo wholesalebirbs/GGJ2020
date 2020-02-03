@@ -107,6 +107,7 @@ namespace Buga
                 case GameState.Menu:
                     if (Input.GetButtonDown(startButton))
                     {
+                        Debug.Log(startButton + " pressed");
                         StartGame();
                     }
                     break;
